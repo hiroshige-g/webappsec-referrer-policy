@@ -679,6 +679,13 @@ spec: html; type: interface; text: Window
 <section>
   <h2 id="integration-with-css">Integration with CSS</h2>
 
+  A <a>CSS style sheet</a> has an associated
+  <dfn for="CSSStyleSheet" export>referrer policy</dfn>, which is a <a for="/">referrer policy</a>.
+  It is initially the <a>default referrer policy</a>. When a <a>CSS style sheet</a> with a non-null
+  <a>location</a> is created from a <a for=/>response</a> |response|, let |policy| be the result of
+  [[#parse-referrer-policy-from-header]] on |response|; if |policy| is not the empty string, set the
+  style sheet's <a for="CSSStyleSheet">referrer policy</a> to |policy|.
+
   The CSS Standard does not specify how it fetches resources referenced from
   stylesheets. However, implementations should be sure to set the
   referrer-related properties of any <a for="/">requests</a> initiated by stylesheets
@@ -691,11 +698,6 @@ spec: html; type: interface; text: Window
        set the <a for="request">referrer</a> to its
        <a>location</a>, and the <a for="request">referrer
        policy</a> to its <a for="CSSStyleSheet">referrer policy</a>.
-
-       Issue: This requires that CSS style sheets process `Referrer-Policy`
-       headers, and store a <dfn for="CSSStyleSheet">referrer policy</dfn>
-       in the same way that <a for="policy container" lt="referrer policy">Documents
-       do</a>.
     </li>
 
     <li>
